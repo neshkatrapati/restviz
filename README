@@ -1,0 +1,6 @@
+=======================================================
+This is a simple rest visualization test. 
+The REST data comes from the rest.php (arbitrary data)
+This uses Flot JS Graphs library.
+To run this ... Run the rest.html file 
+========================================================
