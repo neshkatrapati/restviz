@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<script language="javascript" type="text/javascript" src="flot/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script>
+		<script>
+			data = []
+			data2 = []
+			datar = []
+			$(document).ready(function(){
+            $.ajax({
+            type: "GET",
+            url: "rest.php",
+            data: "dataType=ini",
+            success: function(msg)
+            {
+                var x = eval('(' + msg + ')');
+                for(i=0;i<x.length;i++){
+					//document.getElementById("a").innerHTML += x[i].Results + "<br>";
+					data[i] = [x[i].Results[0],x[i].Results[1]];
+					tar = Math.abs((x[i].Results[1]*(Math.random()*2)) - (x[i].Results[0],x[i].Results[1]));
+					data2[i] = [x[i].Results[0],x[i].Results[1]*(Math.random()*2)];
+					datar[i] = [x[i].Results[0],tar];
+				}
+				//alert(data);
+				$.plot($("#placeholder"), [
+				{ label: "Growth Rate",  data: data},
+				{ label: "Expected Growth Rate",  data: data2},
+				{ label: "Difference",  data: datar},
+				], {
+				series: {
+						lines: { show: true },
+						points: { show: true }
+				},
+				grid: {
+				backgroundColor: { colors: ["#fff", "#eee"] }
+				}});
+        
+			}});
+		
+            }); 
+		
+		
+		</script>
+	</head>
+	<body>
+		<div id='a' ></div>
+		<div id="placeholder" style="width:1000px;height:300px"></div>
+	
+	</body>
+</html>
